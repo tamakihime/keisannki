@@ -10,54 +10,29 @@ int input(){
     }
     return 0;
 }
-int pipot(){
-    double temp[4][5];
-    int max[4]={};
-    for (int i = 0; i < 4; i++) {
-        if (max[0] < a[i][0]) {
-            max[0] = i;
+int pipot(int i){
+    double temp[5];
+    double max = 0;
+    int maxpar = 0;
+    for(int j=i;j<4;j++){
+        if( max < a[j][i]){
+            max = a[i][j];
+            maxpar = j;
         }
     }
-    for(int i =0;i<4;i++){
-        if(i!=max[0]){
-            if (max[1] < a[i][1]) {
-                max[1] = i;
-            }
-        }
-    }
-    for(int i =0;i<4;i++){
-        if(i!=max[0] && i!=max[1]){
-            if (max[2] < a[i][2]) {
-                max[2] = i;
-            }
-        }
-    }
-    for(int i=0;i<4;i++){
-        if(i != max[0] && i != max[1] && i != max[2]){
-            max[3]=i;
-        }
-    }
-    for(int i=0; i<4;i++){
-        int k= max[i];
-        for(int j=0;j<5;j++){
-            temp[i][j]=a[k][j];
-        }
-    }
-    for(int i=0; i<4;i++){
-        for(int j=0;j<5;j++){
-            a[i][j]=temp[i][j];
-        }
+
+    for(int k=i;k<5;k++){
+        temp[k] = a[i][k];
+        a[i][k] = a[maxpar][k];
+        a[maxpar][k] = temp[k];
     }
 }
 
-int syoukyo(){
-    for(int i=0;i<4;i++){
-        for(int k=i+1;k<4;k++){
-            double tmp;
-            tmp=a[k][i]/a[i][i];
-            for(int j=i;j<5;j++){
-                a[k][j]=a[k][j]-(a[i][j]*tmp);
-            }
+int syoukyo(int i){
+    for(int j=i+1;j<4;j++){
+        double temp = a[j][i]/a[i][i];
+        for(int k=i;k<5;k++){
+            a[j][k]=a[j][k]-a[i][k]*temp;
         }
     }
 }
@@ -70,7 +45,9 @@ int main(){
      *
      */
     input();
-    pipot();
-    syoukyo();
+    for(int i=0;i<3;i++){
+        pipot(i);
+        syoukyo(i);
+    }
 }
 
