@@ -1,7 +1,9 @@
 # include<stdio.h>
 #include <stdlib.h>
+#include <tgmath.h>
 
 double a[4][5];
+double answer[4]={};
 int input(){
     for(int i= 0;i<4;i++) {
         char  buf[500000]={};
@@ -15,7 +17,7 @@ int pipot(int i){
     double max = 0;
     int maxpar = 0;
     for(int j=i;j<4;j++){
-        if( max < a[j][i]){
+        if( fabs(max) < fabs(a[j][i])){
             max = a[i][j];
             maxpar = j;
         }
@@ -30,11 +32,20 @@ int pipot(int i){
 
 int syoukyo(int i){
     for(int j=i+1;j<4;j++){
-        double temp = a[j][i]/a[i][i];
-        for(int k=i;k<5;k++){
-            a[j][k]=a[j][k]-a[i][k]*temp;
-        }
+
+            double temp = a[j][i] / a[i][i];
+            for (int k = i; k < 5; k++) {
+                a[j][k] = a[j][k] - a[i][k] * temp;
+            }
+
     }
+}
+int dainyuu(int k){
+    double sum=0;
+    for(int i=3;i>k;i--){
+        sum=sum+a[k][i]*answer[i];
+    }
+    answer[k]=(a[k][4]-sum)/a[k][k];
 }
 
 int main(){
@@ -48,6 +59,9 @@ int main(){
     for(int i=0;i<3;i++){
         pipot(i);
         syoukyo(i);
+    }
+    for(int k=3;k >-1;k--){
+        dainyuu(k);
     }
 }
 
