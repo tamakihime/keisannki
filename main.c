@@ -45,21 +45,15 @@ int pipot() {
 
 }
 int LU_line(){
-    for(int n=0;n<2;n++) {
-        for (int i = n+1; i < 3; i++) {
-            a[n][i] = a[n][i] / a[n][n];
-
-        }
-        for (int j = n+1; j < 3; j++) {
-            for (int k = n+1; k < 3; k++) {
-                a[j][k] = a[j][k] - a[j][n] * a[n][k];
+    for(int i=0;i<3;i++){
+        for(int j=i+1;j<3;j++){
+            a[i][j]=a[i][j]/a[i][i];
+            for(int k=i+1;k<3;k++){
+                a[k][j]=a[k][j]-a[k][i]*a[i][j];
             }
         }
-        if(n==0){
-            pipot();
-        }
-    }
 
+    }
 }
 int dainyuu_zennsinn(){
     for(int i=0;i<3;i++){
@@ -70,10 +64,10 @@ int dainyuu_zennsinn(){
 int dainyuu_kousinn(){
     double temp[3]={};
     for(int i=2; i>-1;--i){
-        temp[i]=answer[2-i]-(temp[2]*a[i][2]+temp[1]*a[i][1]);
+        temp[2-i]=answer[i]-(temp[0]*a[i][2]+temp[1]*a[i][1]);
     }
     for(int i=0;i<3;i++){
-        answer[i]=temp[i];
+        answer[i]=temp[2-i];
     }
 }
 int dainyuu(){
@@ -88,6 +82,7 @@ int print(){
 }
 
 int main(){
+    //8 7 stin();
     input();
     LU_line();
     dainyuu();
