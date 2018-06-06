@@ -63,4 +63,7 @@ int main(){
     for(int k=3;k >-1;k--){
         dainyuu(k);
     }
+    for(int i= 0;i<4;i++){
+        printf("answer[%d]:%lf\n",i,answer[i]);
+    }
 }
