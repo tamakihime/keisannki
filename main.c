@@ -63,12 +63,21 @@ int LU_line(){
 }
 int dainyuu_zennsinn(){
     for(int i=0;i<3;i++){
+        answer[i]=(a[i][3]-(answer[0]*a[i][0]+answer[1]*a[i][1]))/a[i][i];
 
     }
 }
+int dainyuu_kousinn(){
+    double temp[3]={};
+    for(int i=3; i>-1;i--){
+        temp[i]=answer[3-i]-(temp[2]*)
+    }
+}
+
 
 int main(){
     testin();
     //input();
     LU_line();
+    dainyuu_zennsinn();
 }
