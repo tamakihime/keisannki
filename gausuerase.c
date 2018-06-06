@@ -18,7 +18,7 @@ int pipot(int i){
     int maxpar = 0;
     for(int j=i;j<4;j++){
         if( fabs(max) < fabs(a[j][i])){
-            max = a[i][j];
+            max = a[j][i];
             maxpar = j;
         }
     }
