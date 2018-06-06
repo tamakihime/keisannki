@@ -69,15 +69,27 @@ int dainyuu_zennsinn(){
 }
 int dainyuu_kousinn(){
     double temp[3]={};
-    for(int i=3; i>-1;i--){
-        temp[i]=answer[3-i]-(temp[2]*)
+    for(int i=2; i>-1;--i){
+        temp[i]=answer[2-i]-(temp[2]*a[i][2]+temp[1]*a[i][1]);
+    }
+    for(int i=0;i<3;i++){
+        answer[i]=temp[i];
     }
 }
+int dainyuu(){
+    dainyuu_zennsinn();
+    dainyuu_kousinn();
+}
+int print(){
+    for(int i=0;i<3;i++){
+        printf("ans[%d]:%lf\n",i,answer[i]);
+    }
 
+}
 
 int main(){
-    testin();
-    //input();
+    input();
     LU_line();
-    dainyuu_zennsinn();
+    dainyuu();
+    print();
 }
