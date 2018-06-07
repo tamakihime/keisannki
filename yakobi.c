@@ -1,6 +1,3 @@
-//
-// Created by touho on 2018/06/07.
-//
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -34,41 +31,40 @@ int input () {
     }
 }
 int siki(){
-    for(int i=0;i<3;i++){
-        for(int k=0;k<4;k++) {
-            if (i != k) {
-                syoki[i][k]=syoki[i][k]/syoki[i][i]*-1;
+        for(int i=0;i<3;i++){
+            for(int k=0;k<4;k++) {
+                if (i != k) {
+                    syoki[i][k]=syoki[i][k]/syoki[i][i]*-1;
+                }
             }
         }
     }
-}
 
-int gausu_saidel(){
-    beforeanwser[3]=-1;
-    for(int i=1;i==i;i++){
-        for(int j=0;j<3;j++) {
-            double sum=0;
-            for(int k=0;k<4;k++){
-                if(k!=j) {
-                    sum = sum + syoki[j][k] * beforeanwser[k];
+int yakobi(){
+        beforeanwser[3]=-1;
+        for(int i=1;i==i;i++){
+            for(int j=0;j<3;j++) {
+                double sum=0;
+                for(int k=0;k<4;k++){
+                    if(k!=j) {
+                        sum = sum + syoki[j][k] * beforeanwser[k];
+                    }
                 }
                 answer[j]=sum;
             }
+            if(fabs(answer[0]-beforeanwser[0])<0.0000000001 && fabs(answer[1]-beforeanwser[1])<0.0000000001&& fabs(answer[2]-beforeanwser[2])<0.0000000001 ) {
+                return i;
+            }
+            for(int k=0;k<3;k++){
+                beforeanwser[k]=answer[k];
+            }
+        }
 
-        }
-        if(fabs(answer[0]-beforeanwser[0])<0.0000000001 && fabs(answer[1]-beforeanwser[1])<0.0000000001&& fabs(answer[2]-beforeanwser[2])<0.0000000001 ) {
-            return i;
-        }
-        for(int k=0;k<3;k++){
-            beforeanwser[k]=answer[k];
-        }
     }
-
-}
 
 int main(){
     testin();
     siki();
-    int i=gausu_saidel();
+    int i=yakobi();
     printf("%d\n",i);
 }
