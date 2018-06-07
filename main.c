@@ -27,8 +27,7 @@ int input () {
     char buf[1000];
     for (int i = 0; i < 3; i++) {
         fgets(buf, 500, stdin);
-        sscanf(buf, "%lf %lf %lf %lf", &syoki[i][0], &syoki[i][1], &syoki[i][2], &syoki[i][3]);
-        syoki[i][3] = syoki[i][3] * -1;
+        sscanf(buf, "%lf %lf %lf %lf", &syoki[i][0], &syoki[i][1], &syoki[i][2], &syoki[i][3]);;
     }
 }
 int siki(){
@@ -48,9 +47,10 @@ int yakobi(){
                 double sum=0;
                 for(int k=0;k<4;k++){
                     if(k!=j) {
-                        answer[j] = sum + syoki[j][k] * beforeanwser[j];
+                        sum = sum + syoki[j][k] * beforeanwser[k];
                     }
                 }
+                answer[j]=sum;
             }
             if(fabs(answer[0]-beforeanwser[0])<0.0000000001 && fabs(answer[1]-beforeanwser[1])<0.0000000001&& fabs(answer[2]-beforeanwser[2])<0.0000000001 ) {
                 return i;
@@ -65,5 +65,6 @@ int yakobi(){
 int main(){
     testin();
     siki();
-    yakobi();
+    int i=yakobi();
+    printf("%d\n",i);
 }
