@@ -10,7 +10,7 @@
 // Created by touho on 2018/06/07.
 //
 double syoki[3][4]={};
-double answer [3]={};
+double answer [4]={};
 double beforeanwser[4]={};
 int testin(){
     syoki[0][0]=4;
@@ -44,17 +44,18 @@ int siki(){
 }
 
 int gausu_saidel(){
+
     beforeanwser[3]=-1;
-    for(int i=1;i==i;i++){
+    answer[3]=-1;
+    for(int i=1;1;i++){
         for(int j=0;j<3;j++) {
             double sum=0;
             for(int k=0;k<4;k++){
                 if(k!=j) {
-                    sum = sum + syoki[j][k] * beforeanwser[k];
+                    sum = sum + syoki[j][k] *answer[k];
                 }
-                answer[j]=sum;
             }
-
+            answer[j]=sum;
         }
         if(fabs(answer[0]-beforeanwser[0])<0.0000000001 && fabs(answer[1]-beforeanwser[1])<0.0000000001&& fabs(answer[2]-beforeanwser[2])<0.0000000001 ) {
             return i;
@@ -68,7 +69,11 @@ int gausu_saidel(){
 
 int main(){
     testin();
+    input();
     siki();
-    int i=gausu_saidel();
-    printf("%d\n",i);
+    int k=gausu_saidel();
+    for(int i=0;i<3;i++) {
+        printf("answer%d:%lf\n",i,answer[i]);
+    }
+    printf("%d\n",k);
 }

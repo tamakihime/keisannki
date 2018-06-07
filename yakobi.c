@@ -42,7 +42,7 @@ int siki(){
 
 int yakobi(){
         beforeanwser[3]=-1;
-        for(int i=1;i==i;i++){
+        for(int i=1;1;i++){
             for(int j=0;j<3;j++) {
                 double sum=0;
                 for(int k=0;k<4;k++){
@@ -64,7 +64,11 @@ int yakobi(){
 
 int main(){
     testin();
+    input();
     siki();
-    int i=yakobi();
-    printf("%d\n",i);
+    int k=yakobi();
+    for(int i=0;i<3;i++) {
+        printf("answer%d:%lf\n",i,answer[i]);
+    }
+    printf("%d\n",k);
 }
