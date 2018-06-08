@@ -63,7 +63,7 @@ int yakobi(){
     }
 
 int main(){
-    testin();
+    //testin();
     input();
     siki();
     int k=yakobi();

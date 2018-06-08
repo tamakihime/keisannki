@@ -9,9 +9,9 @@
 //
 // Created by touho on 2018/06/07.
 //
-double syoki[3][4]={};
-double answer [4]={};
-double beforeanwser[4]={};
+double syoki[4][5]={};
+double answer [5]={};
+double beforeanwser[5]={};
 int testin(){
     syoki[0][0]=4;
     syoki[0][1]=1;
@@ -28,14 +28,14 @@ int testin(){
 }
 int input () {
     char buf[1000];
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 4; i++) {
         fgets(buf, 500, stdin);
-        sscanf(buf, "%lf %lf %lf %lf", &syoki[i][0], &syoki[i][1], &syoki[i][2], &syoki[i][3]);;
+        sscanf(buf, "%lf %lf %lf %lf %lf", &syoki[i][0], &syoki[i][1], &syoki[i][2], &syoki[i][3],&syoki[i][4]);
     }
 }
 int siki(){
-    for(int i=0;i<3;i++){
-        for(int k=0;k<4;k++) {
+    for(int i=0;i<4;i++){
+        for(int k=0;k<5;k++) {
             if (i != k) {
                 syoki[i][k]=syoki[i][k]/syoki[i][i]*-1;
             }
@@ -45,35 +45,48 @@ int siki(){
 
 int gausu_saidel(){
 
-    beforeanwser[3]=-1;
-    answer[3]=-1;
+    beforeanwser[4]=-1;
+    answer[4]=-1;
     for(int i=1;1;i++){
-        for(int j=0;j<3;j++) {
+        for(int j=0;j<4;j++) {
             double sum=0;
-            for(int k=0;k<4;k++){
+            for(int k=0;k<5;k++){
                 if(k!=j) {
                     sum = sum + syoki[j][k] *answer[k];
                 }
             }
             answer[j]=sum;
         }
-        if(fabs(answer[0]-beforeanwser[0])<0.0000000001 && fabs(answer[1]-beforeanwser[1])<0.0000000001&& fabs(answer[2]-beforeanwser[2])<0.0000000001 ) {
+        if(fabs(answer[0]-beforeanwser[0])<0.0000000001 && fabs(answer[1]-beforeanwser[1])<0.0000000001&& fabs(answer[2]-beforeanwser[2])<0.0000000001 && fabs(answer[3]-beforeanwser[3])<0.0000000001) {
             return i;
         }
-        for(int k=0;k<3;k++){
+        for(int k=0;k<4;k++){
             beforeanwser[k]=answer[k];
         }
     }
 
 }
 
+double check(){
+    double sum=0;
+    sum=answer[0]*8+answer[1]*2+answer[2]*1+answer[3]*5;
+    printf("%lf\n",sum);
+
+}
+double printfanwser(){
+    double c=answer[0]*1+answer[1]*1+answer[2]*2+answer[3]*1;
+    printf("answerc:%lf\n",c);
+}
+
 int main(){
-    testin();
+    //testin();
     input();
     siki();
     int k=gausu_saidel();
-    for(int i=0;i<3;i++) {
+    for(int i=0;i<4;i++) {
         printf("answer%d:%lf\n",i,answer[i]);
     }
     printf("%d\n",k);
+    check();
+    printfanwser();
 }

@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <tgmath.h>
 
-double a[3][4];
-double answer[3]={};
+double a[4][5];
+double answer[4]={};
 int testin(){
     for(int i=0;i<3;++i){
         a[i][0]=3-i;
@@ -18,6 +18,26 @@ int testin(){
     a[2][1]=3;
     a[2][2]=5;
     a[2][3]=12.5;
+}
+int kadaiin(){
+    a[0][0]=8;
+    a[0][1]=2;
+    a[0][2]=1;
+    a[0][3]=5;
+    a[1][0]=2;
+    a[1][1]=7;
+    a[1][2]=3;
+    a[1][3]=1;
+    a[2][0]=1;
+    a[2][1]=7;
+    a[2][2]=5;
+    a[2][3]=1;
+    a[3][0]=1;
+    a[3][1]=1;
+    a[3][2]=2;
+    a[3][3]=3.09;
+
+
 }
 int input(){
     for(int i= 0;i<4;i++) {
@@ -45,15 +65,22 @@ int pipot() {
 
 }
 int LU_line(){
-    for(int i=0;i<3;i++){
-        for(int j=i+1;j<3;j++){
+    for(int i=0;i<4;i++){
+        for(int j=i+1;j<4;j++){
             a[i][j]=a[i][j]/a[i][i];
-            for(int k=i+1;k<3;k++){
+            for(int k=i+1;k<4;k++){
                 a[k][j]=a[k][j]-a[k][i]*a[i][j];
             }
         }
 
     }
+}
+double printanswwer(){
+double sum=1;
+    for(int i=0;i<4;i++){
+        sum=sum*a[i][i];
+    }
+    printf("answer:%lf\n",sum);
 }
 int dainyuu_zennsinn(){
     for(int i=0;i<3;i++){
@@ -83,8 +110,9 @@ int print(){
 
 int main(){
     //8 7 stin();
-    input();
+    //input();
+    kadaiin();
     LU_line();
-    dainyuu();
-    print();
+    printanswwer();
+
 }
