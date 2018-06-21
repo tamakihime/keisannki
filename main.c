@@ -6,7 +6,7 @@
 #include <tgmath.h>
 # include<assert.h>
 double func(double x){
-    return 1/(x*x);
+    return (double) sin(x);
 }
 double daikei(double start , double h){
     double sum=0;
@@ -64,8 +64,9 @@ int main (){
     fgets(buf,256,stdin);
     sscanf(buf,"%d",&mode);
 
-    fgets(buf,256,stdin);
-    sscanf(buf,"%lf %lf",&start,&end);
+    //fgets(buf,256,stdin);
+    //sscanf(buf,"%lf %lf",&start,&end);
+    start=0;end=M_PI_2;
     double h=0;
     h=(end-start)/12;
     double answer=0;
@@ -78,5 +79,5 @@ int main (){
     } else if(mode==4) {
         answer = kinji4(start, h);
     }
-    printf("%lf\n",answer);
+    printf("%16.15lf\n",1-answer);
 }
