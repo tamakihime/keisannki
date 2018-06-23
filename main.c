@@ -58,10 +58,30 @@ double caluculate3(){
     }
     return kukannkannsann(answer); //区間換算を行う
 }
+double caluculate4(){
+    double x4[4],w4[4];
+    x4[0]=sqrt(525+70*sqrt(30))/35;
+    x4[1]=sqrt(525-70*sqrt(30))/35;
+    x4[2]=-x4[1];
+    x4[3]=-x4[0];
+    for(int i=0;i<4;i++){
+        x4[i]=bunntenn(x4[i]);
+    }
+    w4[0]=(18-sqrt(30))/36;
+    w4[1]=(18+sqrt(30))/36;
+    w4[2]=w4[1];
+    w4[3]=w4[0];
+    double answer=0;
+    for(int k=0;k<4;k++){
+        answer = answer+gausukeisann(x4[k], w4[k]);
+    }
+    return kukannkannsann(answer);
+
+}
 
 int main(){
     printf("bunntenn1: %.5e\n",caluculate1()-1);
     printf("bunntenn2: %.5e\n",caluculate2()-1);
     printf("bunntenn3: %.5e\n",caluculate3()-1);
-
+    printf("bunntenn4: %.5e\n",caluculate4()-1);
 }
