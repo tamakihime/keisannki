@@ -3,4 +3,4 @@ project(kisozyouhousuuri C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(cmake-build-debug point.c)
+add_executable(cmake-build-debug main.c)
