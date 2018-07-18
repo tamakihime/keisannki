@@ -3,15 +3,15 @@
 //
 
 #include <stdio.h>
-#include <tgmath.h>
 # include<assert.h>
-double func(double x){
-    return (double) sin(x);
+#include <math.h>
+long double func(long double x){
+    return 1/(sqrtl(x*x+309));
 }
-double daikei(double start , double h){
-    double sum=0;
-    for(int i=0;i<12;i++){
-        double y1=0,y2=0;
+long double daikei(long double start , long double h,int n){
+    long double sum=0;
+    for(int i=0;i<n;i++){
+       long  double y1=0,y2=0;
         y1=func(start+h*i);
         y2=func(start+h*(i+1));
         sum=sum+(y1+y2)*h/2;
@@ -20,10 +20,10 @@ double daikei(double start , double h){
 
 }
 
-double sinpusonn(double start, double h){
-    double sum = 0;
-    for(int i=0;i<6;i++){
-        double y1=0,y2=0,y3=0;
+long double sinpusonn(long double start, long double h,int n){
+   long  double sum = 0;
+    for(int i=0;i<n/3;i++){
+        long double y1=0,y2=0,y3=0;
         y1=func(start+(2*i)*h);
         y2=func(start+(2*i+1)*h);
         y3=func(start+(2*i+2)*h);
@@ -31,10 +31,10 @@ double sinpusonn(double start, double h){
     }
     return sum*h;
 }
-double sinpusonn3(double start, double h){
-    double sum=0;
-    for(int i=0;i<4;i++){
-        double y1=0,y2=0,y3=0,y4=0;
+long double sinpusonn3(long double start, long double h,int n){
+    long double sum=0;
+    for(int i=0;i<n/3;i++){
+        long double y1=0,y2=0,y3=0,y4=0;
         y1=func(start+(3*i)*h);
         y2=func(start+(3*i+1)*h);
         y3=func(start+(3*i+2)*h);
@@ -44,10 +44,10 @@ double sinpusonn3(double start, double h){
     return sum*h;
 }
 
-double kinji4(double start, double h){
-    double sum=0;
+long double kinji4(long double start, long double h){
+   long  double sum=0;
     for(int i=0;i<3;i++){
-        double y1=0,y2=0,y3=0,y4=0,y5=0;
+       long  double y1=0,y2=0,y3=0,y4=0,y5=0;
         y1=func(start+(4*i)*h);
         y2=func(start+(4*i+1)*h);
         y3=func(start+(4*i+2)*h);
@@ -59,25 +59,32 @@ double kinji4(double start, double h){
 }
 int main (){
     char buf[256];
-    double start,end;
+    long double start,end;
     int mode=0;
     fgets(buf,256,stdin);
     sscanf(buf,"%d",&mode);
 
     //fgets(buf,256,stdin);
     //sscanf(buf,"%lf %lf",&start,&end);
-    start=0;end=M_PI_2;
-    double h=0;
-    h=(end-start)/12;
-    double answer=0;
-    if(mode==1){
-        answer=daikei(start,h);
-    } else if(mode==2){
-        answer=sinpusonn(start,h);
-    } else if(mode==3){
-        answer=sinpusonn3(start,h);
-    } else if(mode==4) {
-        answer = kinji4(start, h);
+    start=0;end=1;
+    long double h=0;
+    for(int i=2000000003;i<2000000300;i=i+3) {
+        h = (end - start) / i;
+        long double answer = 0;
+        if (mode == 1) {
+            answer = daikei(start, h, i);
+        } else if (mode == 2) {
+            answer = sinpusonn(start, h,i);
+        } else if (mode == 3) {
+            answer = sinpusonn3(start, h,i);
+        } else if (mode == 4) {
+            answer = kinji4(start, h);
+        }
+        long double j = logl((1.0 + sqrtl(310.0)) / sqrtl(309.0));
+        long double gosa = j - answer;
+        if(fabsl(gosa)<1.98e-117) {
+            printf("%Lf", j);
+            break;
+        }
     }
-    printf("%16.15lf\n",1-answer);
 }

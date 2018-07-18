@@ -4,18 +4,18 @@
 #include <stdio.h>
 #include <math.h>
 double sitenn=0;         //変更パラメータその3　始点
-double syuutenn=M_PI_2; //変更パラメータその2　終点
-double kannsuu(double x){
-    return sin(x); //変更パラメータその1　関数そのもの
+double syuutenn=1; //変更パラメータその2　終点
+long double kannsuu(long double x){
+    return 1/(sqrtl(x*x+309)); //変更パラメータその1　関数そのもの
 }
-double kukannkannsann(double a){
+double kukannkannsann(long double a){
     return a*(syuutenn-sitenn)/2;
 }
 
-double bunntenn(double j){
+long double bunntenn(long double j){
     return (sitenn-(-1)+j)/2*syuutenn;
 }
-double gausukeisann(double x, const double w){
+long double gausukeisann(long double x, long double w){
     return w*kannsuu(x);;
 }
 double caluculate1(){
@@ -59,7 +59,7 @@ double caluculate3(){
     return kukannkannsann(answer); //区間換算を行う
 }
 double caluculate4(){
-    double x4[4],w4[4];
+    long double x4[4],w4[4];
     x4[0]=sqrt(525+70*sqrt(30))/35;
     x4[1]=sqrt(525-70*sqrt(30))/35;
     x4[2]=-x4[1];
@@ -71,7 +71,7 @@ double caluculate4(){
     w4[1]=(18+sqrt(30))/36;
     w4[2]=w4[1];
     w4[3]=w4[0];
-    double answer=0;
+    long double answer=0;
     for(int k=0;k<4;k++){
         answer = answer+gausukeisann(x4[k], w4[k]);
     }
@@ -80,8 +80,8 @@ double caluculate4(){
 }
 
 int main(){
-    printf("bunntenn1: %.5e\n",caluculate1()-1);
-    printf("bunntenn2: %.5e\n",caluculate2()-1);
-    printf("bunntenn3: %.5e\n",caluculate3()-1);
-    printf("bunntenn4: %.5e\n",caluculate4()-1);
+    //printf("bunntenn1: %.5e\n",caluculate1()-1);
+    //printf("bunntenn2: %.5e\n",caluculate2()-1);
+    //printf("bunntenn3: %.5e\n",caluculate3()-1);
+    printf("bunntenn4: %.5Le\n",caluculate4()-logl((1+sqrtl(310))/sqrtl(309)));
 }
